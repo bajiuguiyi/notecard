@@ -4,6 +4,7 @@ from io import BytesIO
 import requests
 from bs4 import BeautifulSoup
 import re
+from PIL import Image
 
 app = Flask(__name__)
 
@@ -37,8 +38,13 @@ def generate_qr_code():
 
         # 使用指定的前景色和背景色生成二维码
         img = qr.make_image(fill_color=qr_color, back_color=qr_background_color)
+
+        # 如果需要确保 img 对象是 PIL 图像对象，可以执行以下转换
+        if not isinstance(img, Image.Image):
+            img = img.convert('RGB')  # 确保图像是 PIL 对象
+
         img_bytes = BytesIO()
-        img.save(img_bytes, format='PNG')
+        img.save(img_bytes, 'PNG')  # 不传递 format 参数，直接指定格式
         img_bytes.seek(0)
 
         return send_file(img_bytes, mimetype='image/png')
