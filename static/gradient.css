@@ -1,0 +1,217 @@
+/* 基本样式 */
+body {
+   /*  font-family: Arial, sans-serif;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+    font-family: 'Source Han Serif', 'Source Han Sans', 'Huiwen Mingchao', 'Jinghua Laosong', 'ShouShuTi', 'Yangrendong Zhushi', 'Ma Shan Zheng', 'LXGWWenKai', sans-serif;
+}
+@font-face {
+    font-family: 'Huiwen Mingchao';
+    src: url('/static/fonts/HuiwenMingchao.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Jinghua Laosong';
+    src: url('/static/fonts/JinghuaLaosong.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'ShouShuTi';
+    src: url('/static/fonts/Shoushuti.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Yangrendong Zhushi';
+    src: url('/static/fonts/YangrendongZhushi.woff') format('woff');
+}
+
+
+
+/* 卡片内容容器 */
+
+.back {
+    width: 100%; /* 确保宽度为父容器的宽度 */
+    height: auto; /* 高度自适应内容 */
+    padding: 1em;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 左对齐 */
+    min-height: 100px;
+    max-width: 100%; /* 防止超出父容器 */
+    position: relative; /* 保持相对定位 */
+    background-color: #ffffff; /* 卡片内的白色背景 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important; /* 阴影效果 */
+    transition: all 0.3s ease; /* 平滑过渡效果 */
+
+}
+
+/* 为边框添加样式 */
+#card {
+    background-color: #FFEA00; /* 设置黄色背景 */
+
+    padding-top: 4em !important ; /* 上内边距 */
+    padding-bottom: 4em !important ; /* 下内边距 */
+    padding-left: 0.8em !important ; /* 左内边距 */
+    padding-right: 0.8em !important ; /* 右内边距 */
+    transition: background-color 0.3s ease, padding 0.3s ease; /* 背景颜色和内边距过渡效果 */
+}
+
+
+#back {
+    border-radius: 20px; /* 默认圆角 */
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3) !important ; /* 默认柔光效果 */
+    transition: border-radius 0.3s ease, box-shadow 0.3s ease; /* 圆角和柔光效果过渡 */
+}
+/* 顶部区域：头像、昵称、日期 */
+.card-header {
+    display: flex;
+    flex-direction: column; /* 使头像、昵称、日期垂直排列 */
+    align-items: flex-start;
+    margin-bottom: 1.5em;
+    width: 100%;
+  position: relative; /* 确保可以绝对定位子元素 */
+
+}
+
+.avatar {
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    background-image: url('{{ url_for('static', filename='avatar.png') }}');
+    background-size: cover;
+    margin-left: 0.5em; /* 左边距 */
+    margin-top: -2.4em; /* 上边距 */
+     margin-bottom: 0.5em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)  ; /* 阴影效果 */
+    position: relative;
+}
+
+.avatar img {
+    width: 3em; /* 修改头像宽度 */
+    height: 3em; /* 修改头像高度 */
+    border-radius: 50%;
+    cursor: pointer;
+}
+.nickname-date {
+    display: flex;
+    flex-direction: column; /* 垂直排列昵称和日期 */
+    align-items: flex-start; /* 确保昵称和日期左对齐 */
+    margin-left: 0.6em; /* 确保与头像对齐 */
+    white-space: nowrap;
+}
+
+.nickname {
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 0.2em; /* 与日期的间距 */
+    text-align: left;
+}
+
+.date-container {
+    font-size: 0.7rem;
+    text-align: left;
+    color: #c2c2c2;
+}
+
+/* 卡片内容 */
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 5em;
+    width: 95%;
+    visibility: visible;
+
+    margin-left: 0.6em;
+
+}
+
+.card-content {
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: left;
+
+    width: 100%;
+    flex-grow: 1; /* 使内容区域占据剩余空间，推动底部元素到卡片底部 */
+}
+
+/* 隐藏 source 和 author */
+.source {
+  display: none !important;
+}
+
+.author {
+    position: absolute; /* 保持绝对定位 */
+    bottom: 3em; /* 距离底部 */
+    max-width: 10em; /* 设置最大宽度为10em */
+    font-size: 0.8em; /* 字体大小 */
+    text-align: left;
+    word-wrap: break-word; /* 允许长单词换行 */
+    display: inline-block; /* 设置为内联块元素 */
+}
+
+.author p {
+    display: inline; /* 确保段落内容为内联显示 */
+    margin: 0; /* 去除默认的外边距 */
+    padding: 0; /* 去除默认的内边距 */
+}
+
+
+.notecard {
+    font-size: 0.7em;
+    font-weight: bold;
+    margin-bottom: 0; /* 移除底部外边距 */
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    position: absolute; /* 使用绝对定位 */
+    bottom: -3em; /* 从 card 底部上移 0.5em */
+    left: 50%; /* 横向居中 */
+    transform: translateX(-50%); /* 精确居中对齐 */
+    white-space: nowrap;
+    text-decoration: underline blue;
+}
+.qr-code {
+    width: 4em;
+    height: 4em;
+    background-image: url('{{ url_for('static', filename='qr_code.png') }}');
+    background-size: cover;
+    background-position: center;
+    position: absolute; /* 使用绝对定位 */
+    right: 1.5em; /* 相对于 back 的右侧 */
+    bottom: 1em; /* 底部距离 */
+}
+
+
+.qr-code img {
+    max-width: 4em;
+    max-height: 4em;
+    object-fit: contain; /* 确保图片内容适应容器 */
+}
+#show-border:checked + #text-replace::after {
+    content: "显示圆角"; /* 当选中时，显示"显示圆角" */
+}
+
+#show-border + #text-replace {
+    visibility: hidden; /* 隐藏原有文本 */
+    position: relative;
+}
+
+#show-border + #text-replace::after {
+    content: "显示边框"; /* 默认显示"显示边框" */
+    visibility: visible;
+    position: absolute;
+    left: 0;
+}
+/* 设置移动端的最大宽度，比如小于 768px 的设备 */
+@media (max-width: 768px) {
+ #card {
+    position: relative;
+
+}
+
+}

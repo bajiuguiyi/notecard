@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>笔记卡片生成器 | notecard.top</title>
+     <meta name="description" content="notecard.top, 开源免费自定义精美的笔记卡片">
+    <meta name="keywords" content="书签模板,精美卡片,书摘分享,小红书模板,书签模板,书签制作,日签制作">
+    <meta name="robots" content="index, follow">
+     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <link id="theme-stylesheet"  rel="stylesheet" href="{{ url_for('static', filename='card.css') }}">
+     <link rel="stylesheet" href="{{ url_for('static', filename='setting.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+    <script>
+        const themeUrls = {
+            'default': "{{ url_for('static', filename='card.css') }}",
+            'artisan': "{{ url_for('static', filename='artisan.css') }}",
+            'gradient': "{{ url_for('static', filename='gradient.css') }}",
+            'note': "{{ url_for('static', filename='note.css') }}"
+
+        };
+    </script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Han+Serif:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Han+Sans:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap">
+    <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkai/dist/lxgwwenkai-light/result.css' />
+
+
+</head>
+<body>
+    <div class="container">
+        <!-- Updated Left Side -->
+        <div class="card-preview">
+
+                <div class="card" id="card">
+                    <div class="back" id="back">
+                    <!-- 顶部区域 -->
+                    <div class="card-header">
+                        <!-- Avatar -->
+                        <div class="avatar">
+                            <img id="avatar" src="{{ url_for('static', filename='images/avatar.jpg') }}" alt="老庄日记">
+                            <input type="file" id="avatar-input" accept="image/*" style="display: none;">
+                        </div>
+                        <!-- Nickname 和 Date -->
+                        <div class="nickname-date">
+                            <div class="nickname">
+                                <p id="nickname" contenteditable="true">老庄</p>
+                            </div>
+                            <div class="date-container">
+                                <p id="date-text" contenteditable="true">摘录于  </p>
+                                <input type="hidden" id="date-input-hidden" value="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="content">
+
+                        <div class="card-content" id="card-content">
+                            <p id="content" contenteditable="true" style="white-space: pre-wrap; word-wrap: break-word;">你的时间和金钱花在哪<br>你的未来就在哪<br><br>Stay hungry<br>Stay foolish</p>
+                        </div>
+                        <div class="source">
+                                <p id="source" contenteditable="true">/改变自己的一套自制外挂系统</p>
+                            </div>
+                        <div class="author">
+                            <p id="author" contenteditable="true">老庄日记</p>
+                        </div>
+
+                    </div>
+                    <div class="separator"></div>
+                    <!-- 底部区域 -->
+                    <div class="footer">
+
+                        <div class="footer-left">
+
+                            <div class="notecard">
+                                <p id="notecard" contenteditable="true">notecard.top </p>
+                            </div>
+                        </div>
+                        <!-- QR Code -->
+                        <div class="qr-code">
+                            <img id="qrCodeImage" src="{{ url_for('static', filename='images/qr_code.png') }}" alt="笔记卡片制作">
+                            <input type="file" id="qr-code-input" accept="image/*" style="display: none;">
+                        </div>
+                    </div>
+</div>
+            </div>
+            <a id="github" href="https://www.lzrj.fun/" title="了解更多关于我们的信息">此项目开源，点此部署同款卡片笔记网站</a>
+        </div>
+
+        <!-- Right Side Settings (No Change Needed) -->
+         <div class="card-settings">
+
+            <div id="loading-indicator" style="display: none;">正在提取数据...</div>
+            <div class="article-input">
+                <label for="article-link">文章链接</label>
+            <input type="text" id="article-link" placeholder="支持微博、公众号、即刻">
+            </div>
+            <!-- 卡片主题 -->
+           <div class="theme-s">
+             <label for="card-theme">卡片主题</label>
+            <div id="card-theme" class="theme-options">
+                <!-- Theme options, two columns -->
+                <div class="theme-column">
+                    <button class="theme-btn" style="background-color: #1b1c21;" title="经典书摘" data-theme="default">经典</button>
+                    <button class="theme-btn" style="background-color: #fffcf6;" title="便签分享" data-theme="artisan">便签</button>
+                    <button class="theme-btn" style="background-color: #ffff00;" title="活力书签" data-theme="gradient">黄即</button>
+                    <button class="theme-btn" style="background-color: #FF00FF;" title="简洁卡片" data-theme="note">卡片</button>
+                </div>
+            </div>
+           </div>
+            <div class="option-tabs-container">
+                <div class="option-tab" data-target="background-options">卡片颜色</div>
+                <div class="option-tab" data-target="switch-border">边框显示</div>
+                <div class="option-tab" data-target="font-color-container">字体颜色</div>
+                 <div class="option-tab" data-target="card-display-options">页面元素</div>
+            </div>
+
+             <div class="tab-content background-options">
+                <label for="back-theme">选择卡片背景色 </label>
+                <div id='back-theme' class="color-options">
+                    <!-- Predefined gradient options -->
+                    <div class="color-box" style="background-color: rgb(27,28,33);" data-color="rgb(27,28,33)" id="default-color-box"></div>
+                    <div class="color-box" style="background-color: #fffcf6;" data-color="#fffcf6" id="color1"></div>
+                     <div class="color-box" style="background-color: #ffffff;" data-color="#ffffff" id="color2"></div>
+                     <div class="color-box" style="background-color: #e0e0e0;" data-color="#e0e0e0" id="color3"></div>
+    <!-- 热门颜色选项 2 -->
+                    <div class="color-box" style="background-color: #FF00FF;" data-color="#FF00FF" id="color4"></div>
+                    <!-- 颜色选择器 -->
+                    <input type="color" id="custom-color-picker" value="#FFFF00" />
+                   <!-- 颜色选项 1 -->
+                    <div class="color-box" style="background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);" data-color="linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%)"></div>
+
+                    <!-- 颜色选项 2 -->
+                    <div class="color-box" style="background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);" data-color="linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%)"></div>
+
+                    <!-- 颜色选项 3 -->
+                    <div class="color-box" style="background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);" data-color="linear-gradient(120deg, #a6c0fe 0%, #f68084 100%)"></div>
+
+                    <!-- 颜色选项 4 -->
+                    <div class="color-box" style="background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);" data-color="linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%)"></div>
+
+                    <!-- 颜色选项 5 -->
+                    <div class="color-box" style="background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);" data-color="linear-gradient(to top, #a8edea 0%, #fed6e3 100%)"></div>
+
+                    <!-- 颜色选项 6 -->
+                    <div class="color-box" style="background-image: linear-gradient(to right, #e4afcb 0%, #b8cbb8 0%, #b8cbb8 0%, #e2c58b 30%, #c2ce9c 64%, #7edbdc 100%);" data-color="linear-gradient(to right, #e4afcb 0%, #b8cbb8 0%, #b8cbb8 0%, #e2c58b 30%, #c2ce9c 64%, #7edbdc 100%)"></div>
+
+                    <!-- 颜色选项 7 -->
+                    <div class="color-box" style="background-image: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);" data-color="linear-gradient(to top, #c471f5 0%, #fa71cd 100%)"></div>
+
+                    <!-- 颜色选项 8 -->
+                    <div class="color-box" style="background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);" data-color="linear-gradient(to top, #ff0844 0%, #ffb199 100%)"></div>
+
+                    <!-- 颜色选项 9 -->
+                    <div class="color-box" style="background-image: linear-gradient(60deg, #abecd6 0%, #fbed96 100%);" data-color="linear-gradient(60deg, #abecd6 0%, #fbed96 100%)"></div>
+                    <!-- 颜色选项 10 -->
+                    <div class="color-box" style="background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);" data-color="linear-gradient(60deg, #29323c 0%, #485563 100%)"></div>
+
+                    <!-- 颜色选项 11 -->
+                    <div class="color-box" style="background-image: linear-gradient(to top, #d5d4d0 0%, #d5d4d0 1%, #eeeeec 31%, #efeeec 75%, #e9e9e7 100%);" data-color="linear-gradient(to top, #d5d4d0 0%, #d5d4d0 1%, #eeeeec 31%, #efeeec 75%, #e9e9e7 100%)"></div>
+
+                </div>
+
+
+            </div>
+
+            <!-- 字体选择 -->
+           <div class="tab-content font-color-container">
+                <div class="font-box">
+               <label for="font-selection">字体</label>
+                <select id="font-selection">
+                     <option value="'LXGWWenKai', cursive">霞鹜文楷</option>
+                     <option value="'Ma Shan Zheng', cursive">马山正毛笔楷书</option>
+                     <option value="'Source Han Serif', serif">思源宋体</option>
+                    <option value="'Source Han Sans', sans-serif">思源黑体</option>
+                    <option value="'Huiwen Mingchao', serif">汇文明朝体</option>
+                    <option value="'Jinghua Laosong', serif">京华老宋体</option>
+                    <option value="'ShouShuTi', cursive">手书体</option>
+                    <option value="'Yangrendong Zhushi', cursive">杨任东竹石体</option>
+
+
+                </select>
+                <label for="font-color-picker">颜色</label>
+                <input type="color" id="font-color-picker" value="#000000"/>
+                    </div>
+            </div>
+
+
+            <div  class="tab-content card-display-options">
+            <label>页面元素</label>
+                <div class="display-options">
+                <label><input type="checkbox" id="show-avatar"> 头像</label>
+                <label><input type="checkbox" id="show-nickname"> 昵称</label>
+                <label><input type="checkbox" id="show-date"> 时间</label>
+                <label><input type="checkbox" id="show-content"> 正文</label>
+                <label><input type="checkbox" id="show-source"> 来源</label>
+                <label><input type="checkbox" id="show-author"> 作者</label>
+                <label><input type="checkbox" id="show-notecard"> 网址</label>
+                <label><input type="checkbox" id="show-qr-code"> 二维码</label>
+            </div>
+                </div>
+             <!-- 新增按钮和颜色选择器 -->
+              <div class="tab-content switch-border">
+             <label class="switch">
+                    <span id="text-replace">显示边框</span>
+                    <input type="checkbox" id="show-border" checked>
+                    <span class="slider"></span>
+                </label>
+
+                <!-- 添加颜色选择面板 -->
+                <div id="border-colors" style="display: none;">
+                    <!-- 示例颜色按钮，您可以根据需要添加更多颜色 -->
+                    <button class="back-box"  style="background-color: rgb(27,28,33);" data-color="rgb(27,28,33)"></button>
+                    <button class="back-box"  style="background-color: #fffcf6;" data-color="#fffcf6"></button>
+                    <button class="back-box"  style="background-color: #ffffff;" data-color="#ffffff"></button>
+                    <button class="back-box"  style="background-color: #e0e0e0;" data-color="#e0e0e0"></button>
+                    <button class="back-box"  style="background-color: #52b69c;" data-color="#52b69c"></button>
+                    <button class="back-box"  style="background-color: #FFEA00;" data-color="#FFEA00"></button>
+                    <input type="color" id="back-color-picker" value="#ff0000" />
+                    <!-- 颜色选项 1 -->
+                    <button class="back-box"  style="background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);" data-color="linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%)"></button>
+
+                    <!-- 颜色选项 2 -->
+                    <button class="back-box"  style="background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);" data-color="linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%)"></button>
+
+                    <!-- 颜色选项 3 -->
+                    <button class="back-box"  style="background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);" data-color="linear-gradient(120deg, #a6c0fe 0%, #f68084 100%)"></button>
+
+                    <!-- 颜色选项 4 -->
+                    <button class="back-box"  style="background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);" data-color="linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%)"></button>
+
+                    <!-- 颜色选项 5 -->
+                    <button class="back-box"  style="background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);" data-color="linear-gradient(to top, #a8edea 0%, #fed6e3 100%)"></button>
+
+                    <!-- 颜色选项 6 -->
+                    <button class="back-box"  style="background-image: linear-gradient(to right, #e4afcb 0%, #b8cbb8 0%, #b8cbb8 0%, #e2c58b 30%, #c2ce9c 64%, #7edbdc 100%);" data-color="linear-gradient(to right, #e4afcb 0%, #b8cbb8 0%, #b8cbb8 0%, #e2c58b 30%, #c2ce9c 64%, #7edbdc 100%)"></button>
+
+                    <!-- 颜色选项 7 -->
+                    <button class="back-box"  style="background-image: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);" data-color="linear-gradient(to top, #c471f5 0%, #fa71cd 100%)"></button>
+
+                    <!-- 颜色选项 8 -->
+                    <button class="back-box"  style="background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);" data-color="linear-gradient(to top, #ff0844 0%, #ffb199 100%)"></button>
+
+                    <!-- 颜色选项 9 -->
+                    <button class="back-box"  style="background-image: linear-gradient(60deg, #abecd6 0%, #fbed96 100%);" data-color="linear-gradient(60deg, #abecd6 0%, #fbed96 100%)"></button>
+
+                    <!-- 颜色选项 10 -->
+                    <button class="back-box"  style="background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);" data-color="linear-gradient(60deg, #29323c 0%, #485563 100%)"></button>
+
+                    <!-- 颜色选项 11 -->
+                    <button class="back-box"  style="background-image: linear-gradient(to top, #d5d4d0 0%, #d5d4d0 1%, #eeeeec 31%, #efeeec 75%, #e9e9e7 100%);" data-color="linear-gradient(to top, #d5d4d0 0%, #d5d4d0 1%, #eeeeec 31%, #efeeec 75%, #e9e9e7 100%)"></button>
+                </div>
+            </div>
+
+            <div class="link-container">
+                 <div class="tab-option" data-target="qr-input">生成二维码</div>
+                <div class="tab-option" data-target="article-input">导入文章</div>
+
+            </div>
+            <!-- 二维码链接 -->
+            <div class="qr-input">
+             <label for="qr-link">输入链接生成二维码</label>
+            <input type="text" id="qr-code-url-input" placeholder="使用问题可微信扫卡片上二维码留言">
+            </div>
+            <button id="generate-card">生成卡片</button>
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="{{ url_for('static', filename='download.js') }}"></script>
+    <script src="{{ url_for('static', filename='article-link.js') }}"></script>
+
+
+</body>
+</html>

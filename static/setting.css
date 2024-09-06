@@ -1,0 +1,430 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family:  'Source Han Sans';
+}
+
+
+html {
+     /*font-size: 1vw; /*基于视口宽度动态 调整字体大小 */
+     font-size: 16px ;
+}
+.container {
+    display: flex;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.card-preview {
+    width: 400px;
+    margin-right: 20px;
+    height: auto;
+    overflow: auto; /* 添加滚动条以便查看内容 */
+    max-height: 90vh; /* 限制卡片的最大高度为视口高度 */
+
+}
+p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.card-settings {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    font-size:0.9em;
+}
+
+.card-settings label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.card-settings input[type="text"] {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.card-settings .theme-options,
+.card-settings .color-options,
+.card-settings .custom-color-picker,
+.card-settings .back-color-picker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.card-settings .color-btn,
+.card-settings .color-box,
+.card-settings .back-box,
+.card-settings .custom-color-box,
+#custom-color-picker,
+#back-color-picker {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+.card-settings .color-btn:hover,
+.card-settings .color-box:hover,
+.card-settings .back-box:hover,
+.card-settings .custom-color-box:hover,
+#custom-color-picker:hover,
+#back-color-picker:hover {
+    border-color: #000;
+}
+
+#generate-card {
+    background-color: #007bff; /* 蓝色背景 */
+    color: white; /* 白色字体 */
+    border: none; /* 无边框 */
+    padding: 10px 20px; /* 上下内边距10px，左右内边距20px */
+    border-radius: 5px; /* 圆角 */
+    font-size: 16px; /* 字体大小 */
+    cursor: pointer; /* 鼠标悬停时显示手型光标 */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* 背景颜色和阴影过渡效果 */
+}
+
+#generate-card:hover {
+    background-color: #0056b3; /* 悬停时变深蓝色 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 悬停时添加阴影 */
+}
+
+#generate-card:active {
+    background-color: #003d80; /* 点击时变更深的蓝色 */
+}
+
+.font-selection-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.font-selection-container label {
+    margin-right: 5px;
+}
+/* 将字体选择和颜色选择放在同一行 */
+.font-color-container .font-box {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-radius: 8px;
+    align-items: center; /* 垂直对齐 */
+    margin-left:0;
+}
+
+
+.font-color-container label {
+    margin: 0; /* 去除默认边距 */
+    font-weight: bold;
+}
+
+#font-selection {
+    width: 6em;
+    font-size: 1em;
+}
+
+#font-color-picker {
+    width: 3em; /* 可以调整颜色选择器的大小 */
+    height: 2em; /* 可以调整颜色选择器的大小 */
+}
+#loading-indicator {
+    position: absolute;           /* 绝对定位 */
+    top: 50%;                     /* 距离顶部50% */
+    left: 50%;                    /* 距离左侧50% */
+    transform: translate(-50%, -50%);  /* 将元素完全居中 */
+
+    font-size: 4em;
+    font-weight: bold;            /* 加粗字体 */
+    color:red;
+
+    animation: blink 0.3s infinite; /* 添加闪烁动画 */
+}
+
+/* 闪烁动画的 keyframes */
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;               /* 起始和结束时透明度为1（完全可见） */
+    }
+    50% {
+        opacity: 0;               /* 在动画中间时透明度为0（完全透明） */
+    }
+}
+.theme-column {
+    display: flex;
+    gap: 10px; /* 设置按钮之间的间距 */
+}
+
+.theme-btn {
+    padding: 5px; /* 设置内间距 */
+    font-size: 16px; /* 设置字体大小 */
+    text-align: center; /* 使文本居中 */
+    width: auto; /* 自适应文本宽度 */
+    border: 1px solid #ccc; /* 添加边框以便区分按钮 */
+    border-radius: 5px; /* 轻微圆角 */
+    cursor: pointer;
+}
+
+.theme-btn:nth-child(1) {
+    background-color: #1b1c21; /* 背景颜色 */
+    color: #fff; /* 设置白色字体，确保可读性 */
+}
+
+.theme-btn:nth-child(2) {
+    background-color: #fffcf6; /* 背景颜色 */
+    color: #000; /* 设置黑色字体 */
+}
+
+.theme-btn:nth-child(3) {
+    background-color: #ffff00; /* 背景颜色 */
+    color: #000; /* 设置黑色字体 */
+}
+
+.theme-btn:nth-child(4) {
+    background-color: #800000; /* 背景颜色 */
+    color: #fff; /* 设置白色字体 */
+}
+.background-options{
+    margin-top:10px;
+}
+.display-options {
+    display: flex;
+    justify-content: flex-start; /* 子元素均匀分布 */
+    flex-wrap: wrap; /* 如果盒子太小，允许元素换行 */
+    gap:10px;
+}
+
+.card-display-options label {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* 控制复选框和文本之间的间距 */
+}
+#github {
+    position: relative; /* 或者 absolute, depending on the layout */
+    top: 4em; /* 向下移动20px */
+    left: 2.5em; /* 向右移动10px */
+}
+/* 隐藏默认复选框 */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.switch {
+    display: flex; /* 使用 flexbox 使子元素在同一水平线 */
+    align-items: center; /* 垂直居中对齐子元素 */
+     margin-bottom:0.6em;
+}
+.slider {
+    display: inline-block; /* 设置为 inline-block，以支持宽高属性 */
+    position: relative;
+    cursor: pointer;
+    width: 3em; /* 设定宽度 */
+    height: 1.3em; /* 设定高度 */
+    background-color: #ddd; /* 未选中时的容器背景颜色 */
+    border-radius: 0.8em; /* 圆角效果，使其像滑块 */
+    transition: 0.4s; /* 平滑过渡效果 */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* 添加阴影以区分背景 */
+    margin-left: 1em;
+
+}
+
+/* 圆形滑块 */
+.slider::before {
+    position: absolute;
+    content: "";
+    height: 1.2em;
+    width: 1.2em;
+    border-radius: 50%;
+    background-color: white; /* 滑块的圆形部分颜色 */
+    transition: 0.4s;
+    left: 2px;
+    bottom: 1px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* 圆形滑块阴影 */
+}
+
+/* 当复选框被选中时，滑块容器的背景色 */
+input:checked + .slider {
+    background-color: #007bff; /* 选中状态下的容器背景颜色 */
+}
+
+/* 滑块开启时，圆形滑块向右移动 */
+input:checked + .slider::before {
+    transform: translateX(25px); /* 将圆形滑块向右移动 */
+}
+.option-tab ,.tab-option {
+       display: none;
+    }
+
+
+/* 设置移动端的最大宽度，比如小于 768px 的设备 */
+@media (max-width: 768px) {
+  /* 调整容器为垂直布局，适合小屏设备 */
+  .container {
+    flex-direction: column; /* 改为竖直排列 */
+     padding: 0;
+     position: relative;
+     max-height: 100vh;
+     overflow: auto;
+  }
+    .flatpickr-mobile {
+        display: none !important;
+     }
+  /* 调整卡片预览区域的宽度为百分比或全宽 */
+  .card-preview {
+    width: 100%; /* 设置为100%宽度，适应屏幕 */
+    margin-right: 0; /* 去掉多余的间距 */
+    position: relative;
+  }
+
+
+
+  /* 调整设置区域的宽度为100%，以适应屏幕 */
+  .card-settings {
+    width: 100%; /* 设置为100%宽度 */
+    max-height: 50vh;
+  }
+   .theme-s{
+        display:flex;
+        justify-content: space-around;
+        position: absolute;
+        left: 1em;
+        top:10px;
+        background:#f0f0f0;
+        border-radius: 0.5em ;
+        width:90%;
+        transition: transform 0.3s ease, opacity 0.3s ease; /* 添加平滑过渡 */
+        z-index: 1000;
+     }
+     .theme-s.collapsed {
+        top: -30px; /* 隐藏盒子 */
+    }
+
+    /* 展开盒子 */
+    .theme-s.expanded {
+        top: 10px; /* 重新显示盒子 */
+    }
+    .theme-s::after {
+        content: "";
+        position: absolute;
+        top: 100%; /* 将三角形放在容器外 */
+        left: 50%; /* 水平居中 */
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid #ed32f6; /* 与盒子背景色相同 */
+    }
+
+    /* 收纳时调整三角的颜色或样式 */
+    .theme-s.collapsed::after {
+        border-top-color: #ddd; /* 改变三角形颜色，收纳时更明显 */
+    }
+    .theme-s label {
+        position: relative;
+        left: 10px;
+        margin-right: 20px; /* 设置label和theme-column之间的距离 */
+    }
+    /* 布局主题按钮容器 */
+    .theme-options {
+        display: flex;
+        justify-content: flex-start; /* 左对齐 */
+    }
+
+    /* 设置.theme-column内的按钮平分剩余空间 */
+    .theme-column {
+        display: flex;
+        justify-content: space-between; /* 平分内部按钮间距 */
+        gap: 10px; /* 设置按钮间的间距，可根据需求调整 */
+        width: 100%; /* 占据可用宽度 */
+    }
+
+    /* 设置按钮样式 */
+    .theme-btn {
+        flex: 1; /* 平分宽度 */
+        padding: 10px; /* 调整按钮内部间距 */
+        text-align: center;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px; /* 添加按钮圆角 */
+        transition: background-color 0.3s ease; /* 添加背景色渐变过渡 */
+    }
+    .option-tabs-container ,.link-container{
+        display: flex;
+        justify-content: space-around; /* 或者使用 space-between 或 space-evenly，根据需要调整 */
+        align-items: center; /* 垂直居中 */
+        width: 100%; /* 确保容器宽度足够 */
+        overflow-x: auto; /* 如果需要，添加横向滚动条以适应较小的屏幕 */
+        background:#fff;
+        margin-top:1em;
+    }
+    .option-tab ,.tab-option{
+        flex: 1;
+        text-align: center;
+        cursor: pointer;
+        border: none;
+        background: #f0f0f0;
+        border: 1px solid #ccc;
+        height:3em;
+         padding: 10px;
+
+        display:block;
+        box-sizing: border-box;
+         transition: background-color 0.3s ease, border-radius 0.3s ease;
+    }
+
+    .option-tab.active {
+        background-color: #ddd; /* 高亮背景色 */
+        font-weight: bold;
+          border-radius: 2em;
+    }
+    .tab-option.active {
+        background-color: #ddd; /* 高亮背景色 */
+        font-weight: bold;
+          border-radius: 5em;
+    }
+    /* 确保每个内容区被隐藏 */
+    .tab-content {
+        display: none;
+        flex: 1;
+    }
+
+    /* 显示当前选中的内容 */
+    .tab-content.active {
+        display: block;
+    }
+
+    .tab-content.active .font-box {
+       display: flex;
+        justify-content: space-between;
+        padding: 0 10px;
+        border-radius: 8px;
+        align-items: center; /* 垂直对齐 */
+
+
+    }
+
+
+    /* 默认隐藏 article-input 内容 */
+    .article-input{
+     display: none;
+
+    }
+    /* 默认显示 qr-input 内容 */
+    .qr-input {
+    display: block;
+
+}
+

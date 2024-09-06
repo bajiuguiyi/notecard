@@ -1,0 +1,114 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+    font-family: 'Huiwen Mingchao', 'Source Han Serif', 'Source Han Sans', 'Jinghua Laosong', 'ShouShuTi', 'Yangrendong Zhushi', 'Ma Shan Zheng', 'LXGWWenKai', sans-serif;
+}
+
+@font-face {
+    font-family: 'Huiwen Mingchao';
+    src: url('/static/fonts/HuiwenMingchao.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Jinghua Laosong';
+    src: url('/static/fonts/JinghuaLaosong.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'ShouShuTi';
+    src: url('/static/fonts/Shoushuti.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Yangrendong Zhushi';
+    src: url('/static/fonts/YangrendongZhushi.woff') format('woff');
+}
+
+
+.back {
+    background-color: #FF00FF ;
+    color: #000;
+    width: auto; /* 宽度自适应内容 */
+    height: auto; /* 高度自适应内容 */
+    padding: 1em;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 左对齐 */
+    min-height: 535px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 100%; /* 防止超出父容器 */
+
+    position: relative; /* 保持相对定位以便内部元素使用绝对定位（如有需要） */
+    transition: all 0.3s ease; /* 平滑过渡效果 */
+
+}
+
+/* 为边框添加样式 */
+#card {
+    background-color: #FFC0CB ; /* 默认背景颜色 */
+    padding: 30px; /* 默认内边距 */
+    transition: background-color 0.3s ease, padding 0.3s ease; /* 背景颜色和内边距过渡效果 */
+}
+
+#back {
+    border-radius: 20px; /* 默认圆角 */
+    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.3); /* 默认柔光效果 */
+    transition: border-radius 0.3s ease, box-shadow 0.3s ease; /* 圆角和柔光效果过渡 */
+}
+
+
+/* 隐藏指定的元素 */
+.avatar {
+    display: none !important ;
+}
+
+.nickname-date {
+    display: none !important ;
+}
+
+.qr-code {
+    display: none !important ;
+}
+.source{
+    display: none !important ;
+}
+
+/* 调整 id="content" 的样式 */
+#content {
+    margin: 1.5em 0.5em;
+    font-size: 1.5em;
+    text-align: left;
+    letter-spacing: 0.1em;
+    line-height: 1.3em;
+    font-weight:bold
+}
+
+/* 调整 id="author" 的样式 */
+#author {
+    position: absolute;
+    right: 1.5em;
+    bottom: 2em;
+    font-size: 1em;
+    text-align: right;
+    font-weight:bold
+}
+#notecard {
+    position: absolute;
+    bottom: -1.8em;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+/* 设置移动端的最大宽度，比如小于 768px 的设备 */
+@media (max-width: 768px) {
+ #card {
+    position: relative;
+
+}
+
+}

@@ -1,0 +1,191 @@
+body {
+   /*  font-family: Arial, sans-serif;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+    font-family: 'Source Han Serif', 'Source Han Sans', 'Huiwen Mingchao', 'Jinghua Laosong', 'ShouShuTi', 'Yangrendong Zhushi', 'Ma Shan Zheng', 'LXGWWenKai', sans-serif;
+}
+@font-face {
+    font-family: 'Huiwen Mingchao';
+    src: url('/static/fonts/HuiwenMingchao.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Jinghua Laosong';
+    src: url('/static/fonts/JinghuaLaosong.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'ShouShuTi';
+    src: url('/static/fonts/Shoushuti.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Yangrendong Zhushi';
+    src: url('/static/fonts/YangrendongZhushi.woff') format('woff');
+}
+
+/* 卡片样式 */
+.back{
+    background-color: var(--card-bg-color, #fffcf6);/* 卡片背景颜色 */
+
+    padding: 2em; /* 内边距 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+    position: relative; /* 使伪元素相对定位 */
+    overflow: hidden;
+
+}
+
+/* 卡片内部边框 */
+.back::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border: 1px solid var(--border-color, #e9e5d9);
+    pointer-events: none; /* 确保不干扰点击 */
+    z-index: 1;
+}
+
+.back::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    border: 1px solid var(--outer-border-color, #e9e5d9);
+    box-shadow: 0 0 0 5px var(--outer-border-color);
+    pointer-events: none; /* 确保不干扰点击 */
+    z-index: 0;
+
+}
+#card {
+    background-color: rgb(178,178,178); /* 默认背景颜色 */
+    padding: 40px; /* 默认内边距 */
+    transition: background-color 0.3s ease, padding 0.3s ease; /* 背景颜色和内边距过渡效果 */
+}
+
+#back {
+    border-radius: 20px; /* 默认圆角 */
+    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.3); /* 默认柔光效果 */
+    transition: border-radius 0.3s ease, box-shadow 0.3s ease; /* 圆角和柔光效果过渡 */
+}
+/* 头部区域 */
+.card-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e9e5d9;
+
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.avatar {
+    width:  3em;
+    height:  3em;
+    border-radius: 50%;
+    background-image: url('{{ url_for('static', filename='avatar.png') }}');
+    background-size: cover;
+    margin-right: 0.5em;
+
+}
+
+.avatar img {
+    width:  3em; /* 修改头像宽度 */
+    height:  3em; /* 修改头像高度 */
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.nickname-date {
+    flex: 1;
+}
+
+.nickname {
+   font-size: 1rem;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 0.3em;
+}
+
+.date-container {
+    color: #888;
+    font-size: 0.8rem;
+    text-align: left;
+    display: block;
+}
+
+/* 内容区域 */
+.content {
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1em;
+    width: 100%;
+    display: block;
+    visibility: visible;
+}
+.card-content {
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: left;
+     margin-bottom: 1em;
+    width: 100%;
+    flex-grow: 1; /* 使内容区域占据剩余空间，推动底部元素到卡片底部 */
+}
+.source{
+    font-size: 0.8em;
+    margin-bottom: 0.6em;
+}
+.author {
+    font-size: 0.7em;
+     margin-bottom: 0.1em;
+}
+/* 卡片底部区域 */
+.footer {
+    border-top: 1px solid #e9e5d9;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+        align-items: center; /* 使子元素垂直居中 */
+    width: 100%;
+}
+.notecard {
+    font-size: 0.7em;
+    font-weight: bold;
+    white-space: nowrap;
+    text-decoration: underline blue;
+
+}
+
+.qr-code {
+    width: 4em;
+    height: 4em;
+    background-image: url('{{ url_for('static', filename='qr_code.png') }}');
+    background-size: cover;
+    background-position: center;
+    bottom: 2em;
+    right: 2em; /* 固定右边距 */
+}
+
+.qr-code img {
+    max-width: 4em;
+    max-height:4em;
+    object-fit: contain; /* 确保图片内容适应容器 */
+
+}
+/* 设置移动端的最大宽度，比如小于 768px 的设备 */
+@media (max-width: 768px) {
+ #card {
+    position: relative;
+
+}
+
+}
