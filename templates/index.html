@@ -21,10 +21,18 @@
 
         };
     </script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Han+Serif:wght@400;700&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Han+Sans:wght@400;700&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap">
-    <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkai/dist/lxgwwenkai-light/result.css' />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" crossorigin="anonymous">
+    <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkai/dist/lxgwwenkai-light/result.css' crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/satouriko/LxgwWenKai_Webfonts@v1.101/dist/LXGWWenKai-Regular.css">
+    <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/hwmct/dist/汇文明朝体/result.css' />
+
+
+
 
 
 </head>
@@ -86,7 +94,7 @@
                     </div>
 </div>
             </div>
-            <a id="github" href="https://github.com/bajiuguiyi/notecard/" title="了解更多关于我们的信息">此项目开源，点此部署同款卡片笔记网站</a>
+            <a id="github" href="https://github.com/bajiuguiyi/notecard" title="了解更多关于笔记卡片网站的信息" target="_blank">此项目开源，点此部署同款卡片笔记网站</a>
         </div>
 
         <!-- Right Side Settings (No Change Needed) -->
@@ -173,12 +181,12 @@
                 <select id="font-selection">
                      <option value="'LXGWWenKai', cursive">霞鹜文楷</option>
                      <option value="'Ma Shan Zheng', cursive">马山正毛笔楷书</option>
-                     <option value="'Source Han Serif', serif">思源宋体</option>
-                    <option value="'Source Han Sans', sans-serif">思源黑体</option>
-                    <option value="'Huiwen Mingchao', serif">汇文明朝体</option>
-                    <option value="'Jinghua Laosong', serif">京华老宋体</option>
-                    <option value="'ShouShuTi', cursive">手书体</option>
+                     <option value="'Noto Serif SC', serif">思源宋体</option>
+                    <option value="'Noto Sans SC', sans-serif">思源黑体</option>
                     <option value="'Yangrendong Zhushi', cursive">杨任东竹石体</option>
+                        <option value="'Huiwen Mingchao', serif">汇文明朝体（网页版暂不能用）</option>
+                    <option value="'Jinghua Laosong', serif">京华老宋体（网页版暂不能用）</option>
+                    <option value="'ShouShuTi', cursive">手书体（网页版暂不能用）</option>
 
 
                 </select>
@@ -210,7 +218,7 @@
                 </label>
 
                 <!-- 添加颜色选择面板 -->
-                <div id="border-colors" style="display: none;">
+                <div id="border-colors" class="back-color" style="display: none;">
                     <!-- 示例颜色按钮，您可以根据需要添加更多颜色 -->
                     <button class="back-box"  style="background-color: rgb(27,28,33);" data-color="rgb(27,28,33)"></button>
                     <button class="back-box"  style="background-color: #fffcf6;" data-color="#fffcf6"></button>
