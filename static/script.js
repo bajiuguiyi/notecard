@@ -540,6 +540,24 @@ document.addEventListener('DOMContentLoaded', function() {
     // 启动定时器以便自动隐藏
     startHideTimeout();
 
+    document.addEventListener('DOMContentLoaded', function() {
+        const contentId = document.getElementById('content');
+
+        contentId.addEventListener('paste', function(event) {
+            event.preventDefault(); // 阻止默认的粘贴行为
+
+            // 创建一个临时的 div 元素
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = (event.clipboardData || window.clipboardData).getData('text/html');
+
+            // 获取纯文本内容
+            const text = tempDiv.innerText || tempDiv.textContent;
+
+            // 插入纯文本内容
+            document.execCommand('insertText', false, text);
+        });
+    });
+
 
 
 
