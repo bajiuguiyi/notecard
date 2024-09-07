@@ -1,36 +1,7 @@
-body {
-   /*  font-family: Arial, sans-serif;*/
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f0f0f0;
-    margin: 0;
-    font-family: 'Source Han Serif', 'Source Han Sans', 'Huiwen Mingchao', 'Jinghua Laosong', 'ShouShuTi', 'Yangrendong Zhushi', 'Ma Shan Zheng', 'LXGWWenKai', sans-serif;
-}
-@font-face {
-    font-family: 'Huiwen Mingchao';
-    src: url('/static/fonts/HuiwenMingchao.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Jinghua Laosong';
-    src: url('/static/fonts/JinghuaLaosong.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'ShouShuTi';
-    src: url('/static/fonts/Shoushuti.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Yangrendong Zhushi';
-    src: url('/static/fonts/YangrendongZhushi.woff') format('woff');
-}
 
 /* 卡片样式 */
 .back{
-    background-color: var(--card-bg-color, #fffcf6);/* 卡片背景颜色 */
+    background-color:  #fffcf6;/* 卡片背景颜色 */
 
     padding: 2em; /* 内边距 */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 阴影效果 */
@@ -66,7 +37,7 @@ body {
 
 }
 #card {
-    background-color: rgb(178,178,178); /* 默认背景颜色 */
+   background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
     padding: 40px; /* 默认内边距 */
     transition: background-color 0.3s ease, padding 0.3s ease; /* 背景颜色和内边距过渡效果 */
 }
