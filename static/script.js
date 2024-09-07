@@ -76,12 +76,11 @@ document.addEventListener('DOMContentLoaded', function() {
    // 修改背景颜色函数
     function changeBackground(color) {
         backElement.style.background = color;
-   // 检查当前设置的背景颜色
-        console.log('Setting background color:', color);
+
         // 如果背景颜色是默认颜色，设置字体颜色为默认颜色
         if (color === defaultBackgroundColor) {
             backElement.style.color = 'rgb(230,210,180)'; // 默认文字颜色
-            console.log('Setting text color to default color');
+
         } else {
             // 获取计算后的颜色
             const computedColor = window.getComputedStyle(backElement).background;
@@ -93,11 +92,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const textColor = brightness < 0.5 ? 'white' : 'black';
             backElement.style.color = textColor;
             computedFontColor = textColor;
-            console.log('Setting text color based on brightness:',brightness, textColor);
+
         }
          updateCardFont();
-        console.log('111:',computedFontColor);
-        console.log('111:',updateCardFont());
+ 
     }
 
 
@@ -257,11 +255,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const fontColorPicker = document.getElementById('font-color-picker');
 
 
-    console.log('666:',fontColorPicker.value);
+
 
 
     let selectedColor = computedFontColor;
-    console.log('777:',computedFontColor);
+
         // 更新左侧画布上的字体
     // 更新字体和颜色的函数
     function updateCardFont() {
@@ -273,7 +271,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 selectedColor = fontColorPicker.value;
             }
         });
-        console.log('222:',selectedColor);
+
 
         // 设置字体样式
         nicknameElement.style.fontFamily = selectedFont;
