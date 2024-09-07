@@ -5,8 +5,36 @@
 }
 
 body {
-    font-family:  'Source Han Sans';
+   /*  font-family: Arial, sans-serif;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+    font-family: 'Noto Serif SC', 'Noto Sans SC', 'Huiwen Mingchao', 'Jinghua Laosong', 'ShouShuTi', 'Yangrendong Zhushi', 'Ma Shan Zheng', 'LXGWWenKai', sans-serif;
 }
+@font-face {
+    font-family: 'Huiwen Mingchao';
+    src: url('/static/fonts/HuiwenMingchao.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Jinghua Laosong';
+    src: url('/static/fonts/JinghuaLaosong.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'ShouShuTi';
+    src: url('/static/fonts/Shoushuti.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Yangrendong Zhushi';
+    src: url('/static/fonts/YangrendongZhushi.woff') format('woff');
+}
+
+
 
 
 html {
@@ -39,6 +67,7 @@ p {
     display: flex;
     flex-direction: column;
     font-size:0.9em;
+    font-family: 'Noto Serif SC', sans-serif;
 }
 
 .card-settings label {
@@ -55,15 +84,15 @@ p {
 }
 
 .card-settings .theme-options,
-.card-settings .color-options,
-.card-settings .custom-color-picker,
-.card-settings .back-color-picker {
+.card-settings .color-options ,
+.card-settings .back-color,
+.card-settings .font-box{
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
 }
 
-.card-settings .color-btn,
+
 .card-settings .color-box,
 .card-settings .back-box,
 .card-settings .custom-color-box,
@@ -75,12 +104,13 @@ p {
     border: 1px solid #ccc;
     cursor: pointer;
 }
-.card-settings .color-btn:hover,
+
 .card-settings .color-box:hover,
 .card-settings .back-box:hover,
 .card-settings .custom-color-box:hover,
 #custom-color-picker:hover,
-#back-color-picker:hover {
+#back-color-picker:hover,
+#font-color-picker:hover {
     border-color: #000;
 }
 
@@ -274,8 +304,10 @@ input:checked + .slider::before {
     flex-direction: column; /* 改为竖直排列 */
      padding: 0;
      position: relative;
-     max-height: 100vh;
+     max-height: 130vh;
      overflow: auto;
+     width:100%;
+     margin:0;
   }
     .flatpickr-mobile {
         display: none !important;
@@ -283,8 +315,10 @@ input:checked + .slider::before {
   /* 调整卡片预览区域的宽度为百分比或全宽 */
   .card-preview {
     width: 100%; /* 设置为100%宽度，适应屏幕 */
-    margin-right: 0; /* 去掉多余的间距 */
+    margin:0; /* 去掉多余的间距 */
     position: relative;
+
+    min-height:50vh;
   }
 
 
@@ -298,7 +332,7 @@ input:checked + .slider::before {
         display:flex;
         justify-content: space-around;
         position: absolute;
-        left: 1em;
+        left: 15px;
         top:10px;
         background:#f0f0f0;
         border-radius: 0.5em ;
@@ -307,7 +341,7 @@ input:checked + .slider::before {
         z-index: 1000;
      }
      .theme-s.collapsed {
-        top: -30px; /* 隐藏盒子 */
+        top: -35px; /* 隐藏盒子 */
     }
 
     /* 展开盒子 */
@@ -329,7 +363,7 @@ input:checked + .slider::before {
 
     /* 收纳时调整三角的颜色或样式 */
     .theme-s.collapsed::after {
-        border-top-color: #ddd; /* 改变三角形颜色，收纳时更明显 */
+        border-bottom-color: red; /* 改变三角形颜色，收纳时更明显 */
     }
     .theme-s label {
         position: relative;
@@ -388,12 +422,12 @@ input:checked + .slider::before {
     .option-tab.active {
         background-color: #ddd; /* 高亮背景色 */
         font-weight: bold;
-          border-radius: 2em;
+        border-radius: 2em;
     }
     .tab-option.active {
         background-color: #ddd; /* 高亮背景色 */
         font-weight: bold;
-          border-radius: 5em;
+         border-radius: 5em;
     }
     /* 确保每个内容区被隐藏 */
     .tab-content {
@@ -406,15 +440,7 @@ input:checked + .slider::before {
         display: block;
     }
 
-    .tab-content.active .font-box {
-       display: flex;
-        justify-content: space-between;
-        padding: 0 10px;
-        border-radius: 8px;
-        align-items: center; /* 垂直对齐 */
 
-
-    }
 
 
     /* 默认隐藏 article-input 内容 */
