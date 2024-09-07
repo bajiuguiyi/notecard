@@ -7,7 +7,7 @@ body {
     height: 100vh;
     background-color: #f0f0f0;
     margin: 0;
-    font-family: 'Source Han Serif', 'Source Han Sans', 'Huiwen Mingchao', 'Jinghua Laosong', 'ShouShuTi', 'Yangrendong Zhushi', 'Ma Shan Zheng', 'LXGWWenKai', sans-serif;
+    font-family: 'Noto Serif SC', 'Noto Sans SC', 'Huiwen Mingchao', 'Jinghua Laosong', 'ShouShuTi', 'Yangrendong Zhushi', 'Ma Shan Zheng', 'LXGWWenKai', sans-serif;
 }
 @font-face {
     font-family: 'Huiwen Mingchao';
