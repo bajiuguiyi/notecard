@@ -1,33 +1,3 @@
-body {
-   /*  font-family: Arial, sans-serif;*/
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f0f0f0;
-    margin: 0;
-    font-family: 'Source Han Serif', 'Source Han Sans', 'Huiwen Mingchao', 'Jinghua Laosong', 'ShouShuTi', 'Yangrendong Zhushi', 'Ma Shan Zheng', 'LXGWWenKai', sans-serif;
-}
-@font-face {
-    font-family: 'Huiwen Mingchao';
-    src: url('/static/fonts/HuiwenMingchao.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Jinghua Laosong';
-    src: url('/static/fonts/JinghuaLaosong.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'ShouShuTi';
-    src: url('/static/fonts/Shoushuti.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Yangrendong Zhushi';
-    src: url('/static/fonts/YangrendongZhushi.woff') format('woff');
-}
-
 
 .back {
     background-color: rgb(27, 28, 33);
@@ -53,9 +23,10 @@ body {
 #card {
     background-color: rgb(178,178,178); /* 默认背景颜色 */
     padding: 40px; /* 默认内边距 */
+    margin:0;
     transition: background-color 0.3s ease, padding 0.3s ease; /* 背景颜色和内边距过渡效果 */
    position: relative;
-   overflow: hidden;
+   overflow: auto;
 }
 
 
@@ -175,6 +146,8 @@ body {
 @media (max-width: 768px) {
     #card {
         position: relative;
+        top:0;
+        margin:0;
 
         }
 
