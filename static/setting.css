@@ -113,8 +113,13 @@ p {
 #font-color-picker:hover {
     border-color: #000;
 }
-
-#generate-card {
+.card-card{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+#generate-card,#copy-card {
     background-color: #007bff; /* 蓝色背景 */
     color: white; /* 白色字体 */
     border: none; /* 无边框 */
@@ -125,12 +130,12 @@ p {
     transition: background-color 0.3s ease, box-shadow 0.3s ease; /* 背景颜色和阴影过渡效果 */
 }
 
-#generate-card:hover {
+#generate-card:hover,#copy-card:hover {
     background-color: #0056b3; /* 悬停时变深蓝色 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 悬停时添加阴影 */
 }
 
-#generate-card:active {
+#generate-card:active ,#copy-card:active{
     background-color: #003d80; /* 点击时变更深的蓝色 */
 }
 
@@ -241,8 +246,8 @@ p {
 }
 #github {
     position: relative; /* 或者 absolute, depending on the layout */
-    top: 4em; /* 向下移动20px */
-    left: 2.5em; /* 向右移动10px */
+    top: 3em;
+    left: 2em;
 }
 /* 隐藏默认复选框 */
 .switch input {
@@ -314,13 +319,13 @@ input:checked + .slider::before {
      }
   /* 调整卡片预览区域的宽度为百分比或全宽 */
   .card-preview {
+    position: relative;
     width: 100%; /* 设置为100%宽度，适应屏幕 */
     margin:0; /* 去掉多余的间距 */
-    position: relative;
 
-    min-height:50vh;
+    min-height:60vh;
+     overflow: auto; /* 添加滚动条以便查看内容 */
   }
-
 
 
   /* 调整设置区域的宽度为100%，以适应屏幕 */
@@ -356,9 +361,9 @@ input:checked + .slider::before {
         transform: translateX(-50%);
         width: 0;
         height: 0;
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-bottom: 10px solid #ed32f6; /* 与盒子背景色相同 */
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-bottom: 20px solid #ed32f6; /* 与盒子背景色相同 */
     }
 
     /* 收纳时调整三角的颜色或样式 */
@@ -441,13 +446,20 @@ input:checked + .slider::before {
     }
 
 
-
-
     /* 默认隐藏 article-input 内容 */
-    .article-input{
+    .article-input,
+    #github,
+    #copy-card{
      display: none;
-
+     }
+     .card-card {
+    justify-content: center;
+  }
+    #generate-card{
+    width:100%;
+    text-align: center;
     }
+
     /* 默认显示 qr-input 内容 */
     .qr-input {
     display: block;
