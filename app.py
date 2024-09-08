@@ -143,7 +143,7 @@ def extract_weibo_content():
             img.decompose()
 
         return jsonify({
-            'author': screen_name + ' 的微博',
+            'author': screen_name + ' 的微博 ',
             'content': str(soup)
         })
     except Exception as e:
@@ -186,7 +186,7 @@ def extract_okjike_content():
             content = '没有找到正文内容'
 
         return jsonify({
-            'author': author + ' 的即刻',
+            'author': author + ' 的即刻 ',
             'content': content
         })
     except Exception as e:
